@@ -8,10 +8,6 @@ interface PageHeaderProps {
   className?: string;
 }
 
-/**
- * Cabecalho padrao: titulo com efeito decrypt e prefixo de comentario,
- * descricao em estilo de prompt, acoes a direita.
- */
 export function PageHeader({ title, description, children, className }: PageHeaderProps) {
   return (
     <div
