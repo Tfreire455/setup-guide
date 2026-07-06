@@ -18,9 +18,10 @@ export function PageHeader({ title, description, children, className }: PageHead
     >
       <div className="min-w-0 space-y-1.5">
         <h1 className="font-display text-2xl font-semibold uppercase tracking-wide sm:text-3xl">
-          <span className="mr-2 select-none text-primary">//</span>
+          <span className="mr-2 select-none text-primary">{"//"}</span>
           <DecryptedText text={title} />
         </h1>
+
         {description ? (
           <p className="font-mono text-[13px] leading-relaxed text-muted-foreground">
             <span className="mr-1.5 select-none text-primary/70">$</span>
@@ -28,6 +29,7 @@ export function PageHeader({ title, description, children, className }: PageHead
           </p>
         ) : null}
       </div>
+
       {children ? <div className="flex shrink-0 items-center gap-2">{children}</div> : null}
     </div>
   );
