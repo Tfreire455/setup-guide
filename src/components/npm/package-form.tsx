@@ -18,7 +18,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Textarea } from "@/components/ui/textarea";
 import { PACKAGE_SCOPES, PACKAGE_STATUS, PACKAGE_TAGS } from "@/lib/constants";
 import { packageSchema, type PackageInput } from "@/lib/validations";
 import type { NpmPackage } from "@/types";
@@ -62,9 +61,7 @@ export function PackageForm({ initial, osOptions = [], onDone }: PackageFormProp
   });
 
   async function onSubmit(values: PackageInput) {
-    const res = isEdit
-      ? await updatePackage(initial!.id, values)
-      : await createPackage(values);
+    const res = isEdit ? await updatePackage(initial!.id, values) : await createPackage(values);
     if (res.error) {
       toast.error(res.error);
       return;
@@ -79,10 +76,13 @@ export function PackageForm({ initial, osOptions = [], onDone }: PackageFormProp
       <div className="grid gap-4 sm:grid-cols-2">
         <div className="space-y-2">
           <Label htmlFor="pname">Pacote *</Label>
-          <Input id="pname" className="font-mono text-sm" placeholder="typescript, vite, eslint..." {...register("name")} />
-          {errors.name ? (
-            <p className="text-xs text-destructive">{errors.name.message}</p>
-          ) : null}
+          <Input
+            id="pname"
+            className="font-mono text-sm"
+            placeholder="typescript, vite, eslint..."
+            {...register("name")}
+          />
+          {errors.name ? <p className="text-xs text-destructive">{errors.name.message}</p> : null}
         </div>
 
         <div className="space-y-2">
@@ -162,7 +162,11 @@ export function PackageForm({ initial, osOptions = [], onDone }: PackageFormProp
 
         <div className="space-y-2 sm:col-span-2">
           <Label htmlFor="preason">Para que serve</Label>
-          <Input id="preason" placeholder="Ex.: linter do projeto, bundler..." {...register("reason")} />
+          <Input
+            id="preason"
+            placeholder="Ex.: linter do projeto, bundler..."
+            {...register("reason")}
+          />
         </div>
 
         <div className="space-y-2">
@@ -177,7 +181,12 @@ export function PackageForm({ initial, osOptions = [], onDone }: PackageFormProp
 
         <div className="space-y-2">
           <Label htmlFor="pucmd">Atualizacao</Label>
-          <Input id="pucmd" className="font-mono text-xs" placeholder="npm i -g pkg@latest" {...register("update_command")} />
+          <Input
+            id="pucmd"
+            className="font-mono text-xs"
+            placeholder="npm i -g pkg@latest"
+            {...register("update_command")}
+          />
         </div>
       </div>
 
